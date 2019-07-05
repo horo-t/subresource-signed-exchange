@@ -20,7 +20,7 @@ We want to extend the usage of the existing [rel=alternate](https://html.spec.wh
             anchor="https://publisher.example/article.html">
       ```
 1. This signed exchange alternate link of main resource can be used both by the crawlers and the UAs.
-   - When the crawlers detects the signed exchange alternate link, the crawlers can fetch the signed exchange.  And when a user is browsing the aggregator site (https://feed.example) and it has a link to the article, the signed exchange can be used for privacy-preserving prefetching using a prefetch `<link>` element and `<a>` link to the signed exchange .
+   - When the crawlers detects the signed exchange alternate link, the crawlers can fetch the signed exchange.  And when a user is browsing the aggregator site (https://feed.example) and it has a link to the article, the signed exchange can be used for [privacy-preserving prefetching](https://wicg.github.io/webpackage/draft-yasskin-webpackage-use-cases.html#private-prefetch) using a prefetch `<link>` element and `<a>` link to the signed exchange .
       ```
       <link href="https://feed.example/article.html.sxg"
             rel="prefetch">
@@ -91,7 +91,7 @@ While processing preload link HTTP headers in prefetched main resource signed ex
 
 ## Detailed design discussion
 ### Content negotiation using Variants and Variant-Key
-The **alternate** link header and **allowed-alt-sxg** link headers can have [variants and variant-key](https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html) attributes to support content negotiation (eg: [WebP support](https://developers.google.com/speed/webp/faq#server-side_content_negotiation_via_accept_headers).
+The **alternate** link header and **allowed-alt-sxg** link headers can have [variants and variant-key](https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html) attributes to support content negotiation (eg: [WebP support](https://developers.google.com/speed/webp/faq#server-side_content_negotiation_via_accept_headers)).
 
 - In **outer** HTTP response of article.html.sxg from feed.example:
     ```

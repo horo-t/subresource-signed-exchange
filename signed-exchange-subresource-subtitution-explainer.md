@@ -10,9 +10,9 @@ We want to introduce a new **rel=allowed-alt-sxg** link HTTP header which will b
 
 A user is browsing a news feed site (https://feed.example/). The user clicks a link to an article in another site (https://publisher.example/article.html). The article is using a large JS library (https://cdn.publisher.example/lib.js) and the user must wait for the JS file to be fetched from the server to read the article.
 
-If the feed site knows that the article is depending on the JS file, the site can insert a link element (`<link rel="prefetch" href="https://cdn.publisher.example/lib.js" as="script">`) to prefetch the JS file while the user is browsing the feed site. But this is problematic from the privacy point of view. And also this doesn’t work if the UA is using origin isolated HTTPCache mechanism.
+If the feed site knows that the article is depending on the JS file, the site can insert a link element (`<link rel="prefetch" href="https://cdn.publisher.example/lib.js" as="script">`) to prefetch the JS file while the user is browsing the feed site. But this is problematic from the privacy point of view. And also this doesn’t work if the UA is using [origin isolated HTTPCache mechanism](http://sirdarckcat.blogspot.com/2019/03/http-cache-cross-site-leaks.html).
 
-Signed Exchange has solved this privacy-preserving prefetching problem for main resources. If the publisher is providing the article in signed exchange format (article.html.sxg), the UA can prefetch the signed exchange from the feed site’s own server while the user is browsing the feed site. But there is no way to prefetch subresources in a privacy-preserving manner yet.
+Signed Exchange has solved this [privacy-preserving prefetching](https://wicg.github.io/webpackage/draft-yasskin-webpackage-use-cases.html#private-prefetch) problem for main resources. If the publisher is providing the article in signed exchange format (article.html.sxg), the UA can prefetch the signed exchange from the feed site’s own server while the user is browsing the feed site. But there is no way to prefetch subresources in a privacy-preserving manner yet.
 
 Our proposal can solve this problem:
 1. The publisher provides the script file in signed exchange format (lib.js.sxg) along with its [header integrity value](#header-integrity-of-signed-exchange).
